@@ -87,7 +87,7 @@ function schedule() {
     if [[ "$1" && "$2" ]]
     then
         sudo dos2unix /home/hariadi/scripts/cron-schedule.sh
-        sudo bash /home/hariadi/scripts/cron-schedule.sh "$1" "$2""
+        sudo bash /home/hariadi/scripts/cron-schedule.sh "$1" "$2"
     else
         echo "Error: missing required parameters."
         echo "Usage: "
