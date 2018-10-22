@@ -6,12 +6,12 @@ The scripts that build the PHP production environment.
 
 1. Clone this repo
 2. Create symlink:
-    a. `sudo ln -sf /etc/nginx/conf ~/server/conf`
-    b. `sudo ln -sf ~/scripts ~/server/scripts`
-    c. `sudo ln -sf ~/server/etc/profile.d/aliases.sh /etc/profile.d/00-aliases.sh`
-3. Backup your `/etc/nginx/nginx.conf` and `/etc/nginx/mime.types` (`cp` to somewhere)
-4 Symlink nginx.conf `sudo ln -sf ~/server/nginx/nginx.conf /etc/nginx/nginx.conf`
-5 Symlink mime.types `sudo ln -sf ~/server/nginx/mime.types /etc/nginx/mime.types`
+ - `sudo ln -sf /etc/nginx/conf ~/server/conf`
+ - `sudo ln -sf ~/scripts ~/server/scripts`
+ - `sudo ln -sf ~/server/etc/profile.d/aliases.sh /etc/profile.d/00-aliases.sh`
+3. Backup your `/etc/nginx/nginx.conf` and `/etc/nginx/mime.types`
+4. Symlink nginx.conf `sudo ln -sf ~/server/nginx/nginx.conf /etc/nginx/nginx.conf`
+5. Symlink mime.types `sudo ln -sf ~/server/nginx/mime.types /etc/nginx/mime.types`
 6. Test with `sudo nginx -t`
 
 # Create virtual host
