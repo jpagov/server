@@ -13,8 +13,11 @@ sudo bash provision.sh
 2. Create symlink:
 	a. `sudo ln -sf /etc/nginx/conf ~/server/conf`
 	b. `sudo ln -sf ~/scripts ~/server/scripts`
-3. `cp ~/server/etc/profile.d/aliases.sh /etc/profile.d/`
-4. Copy `nginx.conf` and `mime.types` to `/etc/nginx`
+3. `sudo ln -sf ~/server/etc/profile.d/aliases.sh /etc/profile.d/00-aliases.sh`
+4. Backup your `/etc/nginx/nginx.conf` and `/etc/nginx/mime.types` (`cp` to somewhere)
+5 `sudo ln -sf ~/server/nginx/nginx.conf /etc/nginx/nginx.conf`
+6 `sudo ln -sf ~/server/nginx/mime.types /etc/nginx/mime.types`
+7. Test with `sudo nginx -t`
 
 # Create virtual host
 
