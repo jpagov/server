@@ -6,8 +6,8 @@ The scripts that build the PHP production environment.
 
 1. Clone this repo
 2. Create symlink:
- - `sudo ln -sf /etc/nginx/conf ~/server/conf`
- - `sudo ln -sf ~/scripts ~/server/scripts`
+ - `sudo ln -sf ~/server/conf /etc/nginx/conf`
+ - `sudo ln -sf ~/server/scripts ~/scripts`
  - `sudo ln -sf ~/server/etc/profile.d/aliases.sh /etc/profile.d/00-aliases.sh`
 3. Backup your `/etc/nginx/nginx.conf` and `/etc/nginx/mime.types`
 4. Symlink nginx.conf `sudo ln -sf ~/server/nginx/nginx.conf /etc/nginx/nginx.conf`
