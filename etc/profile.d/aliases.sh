@@ -43,7 +43,7 @@ function php72() {
 function serve-web() {
     if [[ "$1" && "$2" ]]
     then
-        sudo bash /home/hariadi/scripts/create-certificate.sh "$1"
+        # sudo bash /home/hariadi/scripts/create-certificate.sh "$1"
         sudo dos2unix /home/hariadi/scripts/serve-web.sh
         sudo bash /home/hariadi/scripts/serve-web.sh "$1" "$2" 80 443 "${3:-7.2}"
     else
@@ -87,7 +87,7 @@ function schedule() {
     if [[ "$1" && "$2" ]]
     then
         sudo dos2unix /home/hariadi/scripts/cron-schedule.sh
-        sudo bash /home/hariadi/scripts/cron-schedule.sh "$1" "$2""
+        sudo bash /home/hariadi/scripts/cron-schedule.sh "$1" "$2"
     else
         echo "Error: missing required parameters."
         echo "Usage: "
