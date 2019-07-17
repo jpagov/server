@@ -20,20 +20,7 @@ then configureHsts="server {
 
 	# and redirect to the https host (declared below)
 	# avoiding http://www -> https://www -> https:// chain.
-	return 301 https://$1\$request_uri;
-}
-
-server {
-	listen [::]:${4:-443} ssl http2;
-	listen ${4:-443} ssl http2;
-
-	# listen on the wrong host
-	server_name www.$1;
-
-	include conf/directive-only/ssl.conf;
-
-	# and redirect to the non-www host (declared below)
-	return 301 https://$1\$request_uri;
+	return 301 \$scheme://$1\$request_uri;
 }
 "
 else configureHsts=""
@@ -46,13 +33,13 @@ server {
 
 	server_name .$1;
 
-	include conf/directive-only/ssl.conf;
+	include h5bp/ssl/ssl_engine.conf;
+    include h5bp/ssl/certificate_files.conf;
+    include h5bp/ssl/policy_deprecated.conf;
 
 	root \"$2\";
 
 	index index.html index.htm index.php;
-
-	charset utf-8;
 
 	location / {
 		try_files \$uri \$uri/ /index.php?\$query_string;
@@ -64,11 +51,13 @@ server {
 	access_log /var/log/nginx/$1.log main;
 	error_log  /var/log/nginx/$1-error.log error;
 
-	sendfile off;
-
-	client_max_body_size 100m;
-
 	include conf/basic.conf;
+	include h5bp/errors/custom_errors.conf;
+
+	include h5bp/security/x-frame-options.conf;
+    include h5bp/security/content-security-policy.conf;
+    include h5bp/security/strict-transport-security.conf;
+    include h5bp/security/x-xss-protection.conf;
 
 	location ~ \.php$ {
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -92,5 +81,4 @@ server {
 }
 "
 
-echo "$block" > "/etc/nginx/sites-available/$1"
-ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
+echo "$block" > "/etc/nginx/conf.g/$1"
